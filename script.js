@@ -8,12 +8,14 @@ const passwordField = document.getElementById("password");
 firstNameField.addEventListener('invalid', e => {
     e.preventDefault();
     document.getElementById("first-name-error").classList.remove('hidden');
+    firstNameField.nextElementSibling.classList.remove('hidden');
     firstNameField.classList.add('invalid');
 });
 
 lastNameField.addEventListener('invalid', e => {
     e.preventDefault();
     document.getElementById("last-name-error").classList.remove('hidden');
+    lastNameField.nextElementSibling.classList.remove('hidden');
     lasttNameField.classList.add('invalid');
 });
 
@@ -24,13 +26,15 @@ emailField.addEventListener('invalid', e => {
     }
     if (emailField.validity.typeMismatch) {
         document.getElementById("email-format-error").classList.remove('hidden');
-        emailField.classList.add('invalid');
-    }        
+    }
+    emailField.nextElementSibling.classList.remove('hidden'); 
+    emailField.classList.add('invalid');       
 });
 
 passwordField.addEventListener('invalid', e => {
     e.preventDefault();
     document.getElementById("password-error").classList.remove('hidden');
+    passwordField.nextElementSibling.classList.remove('hidden');
     passwordField.classList.add('invalid');
 })
 
@@ -44,5 +48,9 @@ form.addEventListener('submit', e => {
     inputFields = document.querySelectorAll('input');
     inputFields.forEach(field => {
         field.classList.remove('invalid');
+    });
+    errorIcons = document.querySelectorAll('.error-icon');
+    errorIcons.forEach(icon => {
+        icon.classList.add('hidden');
     })
 })
